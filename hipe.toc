@@ -1,0 +1,10 @@
+## Interface: 100200
+## Version: 1.0.0
+## Title: Hide Profession Equipment
+## Notes: A simple addon to remove Dragonflight profession appearances.
+## IconTexture: Interface/ICONS/INV_Archaeology_Orcclans_Metalworkershammer.PNG
+## Author: garric
+
+aura.lua
+blocker.lua
+main.lua
