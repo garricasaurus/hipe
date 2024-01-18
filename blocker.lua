@@ -11,7 +11,6 @@ local blocker = {
         [394001] = "Sculpting Leather Finery",
         [391312] = "Wrapped Up In Weaving",
         [391775] = "What's Cookin', Good Lookin'?",
-        [394009] = "Fishing For Attention",
         [394005] = "A Cultivator's Colors",
         [394006] = "Rockin' Mining Gear",
         [394011] = "Dressed To Kill",
