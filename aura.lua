@@ -13,7 +13,7 @@ end
 
 function aura:find(spellId)
     for i = 1, 40 do
-        local buffId = select(10, UnitBuff("player", i))
+        local buffId = select(10, UnitBuff(self.player, i))
         if buffId == nil then
             break
         elseif buffId == spellId then
