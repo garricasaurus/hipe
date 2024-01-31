@@ -12,15 +12,15 @@ instantHideCheckbox:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -40)
 instantHideHint:SetPoint("LEFT", instantHideCheckbox, "RIGHT", 200, 0)
 
 function frame:OnRefresh()
-    instantHideCheckbox:SetChecked(Conf.instantHide)
+    instantHideCheckbox:SetChecked(HipeConf.instantHide)
 end
 
 function frame:OnCommit()
-    Conf.instantHide = instantHideCheckbox:GetChecked()
+    HipeConf.instantHide = instantHideCheckbox:GetChecked()
 end
 
 function frame:OnDefault()
-    Conf = hipe.defaults
+    HipeConf = hipe.defaults
 end
 
 -- integrate with options menu

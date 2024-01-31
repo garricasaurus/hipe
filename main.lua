@@ -15,17 +15,17 @@ end)
 
 function frame:ADDON_LOADED(addonName)
     if name == addonName then
-        Conf = Conf or {}
+        HipeConf = HipeConf or {}
         for k, v in pairs(hipe.defaults) do
-			if not Conf[k] then
-				Conf[k] = v
+			if not HipeConf[k] then
+				HipeConf[k] = v
 			end
 		end
 	end
 end
 
 function frame:UNIT_AURA(_, updateInfo)
-	if Conf.instantHide then
+	if HipeConf.instantHide then
 		if updateInfo and updateInfo.addedAuras then
 			for _, aura in pairs(updateInfo.addedAuras) do
 				blocker:removeIfBlocked(aura.spellId)
