@@ -17,7 +17,7 @@ function frame:ADDON_LOADED(addonName)
     if name == addonName then
         HipeConf = HipeConf or {}
         for k, v in pairs(hipe.defaults) do
-			if not HipeConf[k] then
+			if HipeConf[k] == nil then
 				HipeConf[k] = v
 			end
 		end
