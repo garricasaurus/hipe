@@ -1,7 +1,7 @@
 local _, hipe = ...
 
 local blocker = {
-	blocked = {
+	standard = {
 		[394003] = "Spark of Madness",
 		[388658] = "Suited For Smithing",
 		[394015] = "An Eye For Shine",
@@ -15,9 +15,9 @@ local blocker = {
 		[394006] = "Rockin' Mining Gear",
 		[394011] = "Dressed To Kill",
 	},
-	-- special auras should never be instantly removed, as their
+	-- fishing auras should never be instantly removed, as their
 	-- removal also prematurely ends the profession related activity
-	special = {
+	fishing = {
 		[394009] = "Fishing for Attention",
 	},
 }
@@ -25,19 +25,19 @@ local blocker = {
 local aura = hipe.aura
 
 function blocker:removeIfBlocked(spellId)
-	if self.blocked[spellId] then
+	if self.standard[spellId] then
 		aura:remove(spellId)
 	end
 end
 
-function blocker:removeAllBlocked()
-	for k in pairs(self.blocked) do
+function blocker:removeAllStandard()
+	for k in pairs(self.standard) do
 		aura:remove(k)
 	end
 end
 
-function blocker:removeAllSpecial()
-	for k in pairs(self.special) do
+function blocker:removeFishing()
+	for k in pairs(self.fishing) do
 		aura:remove(k)
 	end
 end

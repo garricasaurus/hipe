@@ -35,18 +35,21 @@ function frame:UNIT_AURA(_, updateInfo)
 end
 
 function frame:UNIT_SPELLCAST_STOP()
-	blocker:removeAllBlocked()
+	blocker:removeAllStandard()
 end
 
 function frame:UNIT_SPELLCAST_CHANNEL_STOP()
-	blocker:removeAllBlocked()
-    blocker:removeAllSpecial()
+	blocker:removeAllStandard()
+	if not HipeConf.ignoreFishing then
+		blocker:removeFishing()
+	end
 end
 
 function frame:PLAYER_REGEN_ENABLED()
-	blocker:removeAllBlocked()
+	blocker:removeAllStandard()
 end
 
 hipe.defaults = {
 	instantHide = false,
+	ignoreFishing = false,
 }
