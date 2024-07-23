@@ -1,5 +1,5 @@
-## Interface: 100207
-## Version: 1.0.9
+## Interface: 110000
+## Version: 1.0.10
 ## Title: Hide Profession Equipment
 ## Notes: A simple addon to remove Dragonflight profession appearances.
 ## SavedVariables: HipeConf
