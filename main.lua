@@ -1,5 +1,6 @@
 local name, hipe = ...
 
+local settings = hipe.settings
 local blocker = hipe.blocker
 
 ---@class Frame
@@ -14,13 +15,9 @@ frame:SetScript("OnEvent", function(self, event, ...)
 end)
 
 function frame:ADDON_LOADED(addonName)
-    if name == addonName then
-        HipeConf = HipeConf or {}
-        for k, v in pairs(hipe.defaults) do
-			if HipeConf[k] == nil then
-				HipeConf[k] = v
-			end
-		end
+	if name == addonName then
+		HipeConf = HipeConf or settings.defaults
+		settings:Init()
 	end
 end
 
@@ -48,8 +45,3 @@ end
 function frame:PLAYER_REGEN_ENABLED()
 	blocker:removeAllStandard()
 end
-
-hipe.defaults = {
-	instantHide = false,
-	ignoreFishing = false,
-}

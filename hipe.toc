@@ -1,5 +1,5 @@
 ## Interface: 110002
-## Version: 1.0.10
+## Version: 1.1.0
 ## Title: Hide Profession Equipment
 ## Notes: A simple addon to remove Dragonflight profession appearances.
 ## SavedVariables: HipeConf
@@ -8,7 +8,6 @@
 
 strings.lua
 
-ui/components.lua
 ui/settings.lua
 
 aura.lua

@@ -1,37 +1,35 @@
 local name, hipe = ...
 
-local frame = CreateFrame("Frame", "HipeSettingsFrame")
+local settings = {
+    defaults = {
+        instantHide = false,
+        ignoreFishing = false,
+    }
+}
 
-local title = hipe.CreateText(frame, hipe.settingsTitle, "GameFontNormalLarge")
+function settings:Init()
+    self.category, self.layout = Settings.RegisterVerticalLayoutCategory(name)
+    self.category.ID = name
 
-local instantHideHint = hipe.CreateText(frame, hipe.instantHideHint, "GameFontHighlightSmall")
-local instantHideCheckbox = hipe.CreateCheckbox(frame, hipe.instantHideText)
+    self.layout:AddInitializer(CreateSettingsListSectionHeaderInitializer(hipe.settingsTitle))
+    self:CreateProxiedCheckBox(
+        hipe.instantHideText,
+        hipe.instantHideHint,
+        "instantHide"
+    )
+    self:CreateProxiedCheckBox(
+        hipe.ignoreFishingText,
+        hipe.ignoreFishingHint,
+        "ignoreFishing"
+    )
 
-local ignoreFishingHint = hipe.CreateText(frame, hipe.ignoreFishingHint, "GameFontHighlightSmall")
-local ignoreFishingCheckbox = hipe.CreateCheckbox(frame, hipe.ignoreFishingText)
-
-title:SetPoint("TOPLEFT", 20, -20)
-instantHideCheckbox:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -40)
-instantHideHint:SetPoint("LEFT", instantHideCheckbox, "RIGHT", 200, 0)
-ignoreFishingCheckbox:SetPoint("TOPLEFT", instantHideCheckbox, "BOTTOMLEFT", 0, -80)
-ignoreFishingHint:SetPoint("LEFT", ignoreFishingCheckbox, "RIGHT", 200, 0)
-
-function frame:OnRefresh()
-    instantHideCheckbox:SetChecked(HipeConf.instantHide)
-    ignoreFishingCheckbox:SetChecked(HipeConf.ignoreFishing)
+    Settings.RegisterAddOnCategory(self.category)
 end
 
-function frame:OnCommit()
-    HipeConf.instantHide = instantHideCheckbox:GetChecked()
-    HipeConf.ignoreFishing = ignoreFishingCheckbox:GetChecked()
+function settings:CreateProxiedCheckBox(text, tooltip, variable)
+    local setting = Settings.RegisterAddOnSetting(self.category, variable, variable, HipeConf,
+        Settings.VarType.Boolean, text, self.defaults[variable])
+    Settings.CreateCheckbox(self.category, setting, tooltip)
 end
 
-function frame:OnDefault()
-    HipeConf = hipe.defaults
-end
-
--- integrate with options menu
-local settings = Settings.RegisterCanvasLayoutCategory(frame, name)
-settings.ID = name
-
-Settings.RegisterAddOnCategory(settings)
+hipe.settings = settings
