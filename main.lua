@@ -18,6 +18,10 @@ function frame:ADDON_LOADED(addonName)
 	if name == addonName then
 		HipeConf = HipeConf or settings.defaults
 		settings:Init()
+		C_Timer.After(1, function ()
+			-- remove auras added before the addon has been loaded
+			blocker:removeAllStandard()
+		end)
 	end
 end
 
